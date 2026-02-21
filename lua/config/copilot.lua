@@ -1,0 +1,33 @@
+-- require("CopilotChat").setup({
+--
+--     model = 'gpt-5-mini',    -- AI model to use
+--     language = 'Chinese',
+--     temperature = 0.1,       -- Lower = focused, higher = creative
+--     window = {
+--         layout = 'vertical', -- 'vertical', 'horizontal', 'float'
+--         width = 0.3,         -- 50% of screen width
+--     },
+--     mappings = {
+--         reset = {
+--             normal = 'gr', -- 普通模式下 Ctrl+l 清空聊天
+--         },
+--     },
+--
+--     history_path = vim.fn.stdpath("data") .. "/copilotchat_history",
+-- })
+--
+-- local chat = require("CopilotChat")
+--
+--
+-- vim.keymap.set("n", "<leader>a", function()
+--     chat.open({
+--         window = {
+--
+--             layout = 'float',
+--             relative = 'editor',
+--             width = 0.9,
+--             height = 0.8,
+--
+--         },
+--     })
+-- end, { desc = "CopilotChat - Toggle float window" })

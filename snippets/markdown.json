@@ -1,0 +1,18 @@
+{
+    "Markdown Frontmatter": {
+        "prefix": "front",
+        "body": [
+            "---",
+            "title: \"${1:笔记标题}\"",
+            "date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\"",
+            "tags: [${2:tag1, tag2}]",
+            "source: \"${3:来源或链接}\"",
+            "status: ${4:draft}",
+            "summary: \"${5:一句话总结}\"",
+            "---",
+            "",
+            "$0"
+        ],
+        "description": "Add YAML frontmatter to Markdown"
+    }
+}
