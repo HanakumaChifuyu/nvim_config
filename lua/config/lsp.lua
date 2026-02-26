@@ -16,16 +16,36 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         require("conform").format({ bufnr = args.buf })
     end,
 })
-
+vim.diagnostic.config({
+    -- 关键：打字时实时更新报错
+    update_in_insert = true,
+    -- 提高报错显示的响应速度
+    severity_sort = true,
+})
 vim.lsp.config('rust_analyzer', {
     cmd = { 'rust-analyzer' },
     filetypes = { 'rust' },
     root_markers = { 'Cargo.toml', '.git' },
     settings = {
         ['rust-analyzer'] = {
-            checkOnSave = { command = "clippy" },
+
             procMacro = { enable = true },
-            diagnostics = { enable = true },
+            diagnostics = {
+                enable = true,
+                experimental = {
+                    enable = true,
+                },
+            },
+            check = {
+                command = "check",
+            },
+            cargo = {
+                autoreload = true,
+                buildScripts = {
+                    enable = true,
+                },
+            },
+
         },
     },
 })
@@ -44,7 +64,7 @@ require("conform").setup({
         conf = { "prettier" },
         fish = { "fish_indent" },
         python = { "ruff_format", "ruff_organize_imports", "ruff_fix" },
-        rust = { "rustfmt" },
+        -- rust = { "rustfmt" },
         json = { "biome", "prettier", stop_after_first = true },
         jsonc = { "biome" },
         javascript = { "prettier", stop_after_first = true },
