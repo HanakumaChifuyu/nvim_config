@@ -1,4 +1,5 @@
 -- basic
+vim.keymap.set('n', '<leader>e', '<cmd>Oil<CR>', { desc = 'Open Oil file manager' })
 vim.keymap.set('n', 'j', 'gj', { noremap = true, silent = true })
 vim.keymap.set('n', 'k', 'gk', { noremap = true, silent = true })
 vim.keymap.set('v', 'j', 'gj', { noremap = true, silent = true })
@@ -44,8 +45,6 @@ vim.keymap.set('n', 'C', function()
     vim.fn.setreg('+', path)
     print("Copied: " .. path)
 end, { desc = "Copy relative path" })
--- neo-tree
-vim.keymap.set('n', '<leader>e', ":Neotree toggle<CR>", { desc = "Toggle neo-tree" })
 
 -- lsp
 vim.api.nvim_create_autocmd("LspAttach", {
