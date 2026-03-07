@@ -1,7 +1,18 @@
 require("oil").setup({
-    -- 按下特定的键（比如 <CR> 或 <Tab>）可以开启预览
     default_file_explorer = true,
     view_options = {
         show_hidden = true,
+    },
+    keymaps = {
+        ["q"] = "actions.close",
+    },
+    float = {
+        padding = 2,
+        max_width = 0,
+        max_height = 0,
+        border = "rounded",
+        win_options = {
+            winblend = 0,
+        },
     },
 })

@@ -1,5 +1,5 @@
 -- basic
-vim.keymap.set('n', '<leader>e', '<cmd>Oil<CR>', { desc = 'Open Oil file manager' })
+vim.keymap.set('n', '<leader>e', '<cmd>Oil --float<CR>', { desc = 'Open Oil file manager (float)' })
 vim.keymap.set('n', 'j', 'gj', { noremap = true, silent = true })
 vim.keymap.set('n', 'k', 'gk', { noremap = true, silent = true })
 vim.keymap.set('v', 'j', 'gj', { noremap = true, silent = true })

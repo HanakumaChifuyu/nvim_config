@@ -5,11 +5,21 @@
 --     end,
 -- })
 
--- markdown wrap
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "markdown",
+-- text file wrap
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
+    pattern = { "*.md", "*.txt", "*.text", "*.rst", "*.org", "*.adoc" },
     callback = function()
-        vim.opt_local.wrap = true
-        vim.opt_local.linebreak = true
+        local ft = vim.bo.filetype
+        local text_types = {
+            ["markdown"] = true,
+            ["text"] = true,
+            ["rst"] = true,
+            ["org"] = true,
+            ["asciidoc"] = true,
+        }
+        if text_types[ft] then
+            vim.opt_local.wrap = true
+            vim.opt_local.linebreak = true
+        end
     end,
 })
