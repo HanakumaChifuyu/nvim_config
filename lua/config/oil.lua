@@ -17,7 +17,7 @@ require("oil").setup({
                 end
 
                 local full_path = dir .. entry.name
-                local relative_path = '@' .. vim.fn.fnamemodify(full_path, ":.")
+                local relative_path = ' @' .. vim.fn.fnamemodify(full_path, ":.") .. ' '
 
                 if entry.type == "directory" then
                     relative_path = relative_path .. "/"
@@ -52,24 +52,24 @@ require("oil-git").setup({
 
     symbols = {
         file = {
-            added = "+",
-            modified = "~",
-            renamed = "->",
-            deleted = "D",
-            copied = "C",
-            conflict = "!",
-            untracked = "?",
-            ignored = "o"
+            added = "",
+            modified = " ",
+            renamed = " ",
+            deleted = " ",
+            copied = "󰆏 ",
+            conflict = "󰽜 ",
+            untracked = "",
+            ignored = " "
         },
         directory = {
-            added = "*",
-            modified = "*",
-            renamed = "*",
-            deleted = "*",
-            copied = "*",
-            conflict = "!",
-            untracked = "*",
-            ignored = "o"
+            added = "",
+            modified = " ",
+            renamed = " ",
+            deleted = " ",
+            copied = "󰆏 ",
+            conflict = "󰽜 ",
+            untracked = "",
+            ignored = " "
         },
     },
 

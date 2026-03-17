@@ -41,7 +41,7 @@ vim.keymap.set("n", "<leader>c", function()
 
 -- 复制相对路径到系统剪贴板
 vim.keymap.set('n', 'C', function()
-    local path = '@' .. vim.fn.expand('%:.')
+    local path = ' @' .. vim.fn.expand('%:.') .. ' '
     vim.fn.setreg('+', path)
 end, { desc = "Copy relative path" })
 
