@@ -14,6 +14,7 @@ return {
                 enabled = false,
             },
         },
+        scroll={enabled=true},
         picker = { enabled = true, ui_select = true },
         quickfile = { enabled = true },
         rename = { enabled = true },
