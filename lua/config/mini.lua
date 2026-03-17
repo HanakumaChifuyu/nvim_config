@@ -14,6 +14,3 @@ mc.setup(config)
 require('mini.pairs').setup(
 
 )
-require('mini.diff').setup()
--- mini.animate
--- require('mini.animate').setup()

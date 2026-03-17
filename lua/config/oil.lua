@@ -17,10 +17,10 @@ require("oil").setup({
                 end
 
                 local full_path = dir .. entry.name
-                local relative_path = ' @' .. vim.fn.fnamemodify(full_path, ":.") .. ' '
+                local relative_path = ' @' .. vim.fn.fnamemodify(full_path, ":.")
 
                 if entry.type == "directory" then
-                    relative_path = relative_path .. "/"
+                    relative_path = relative_path .. "/ "
                 end
                 vim.fn.setreg("+", relative_path)
             end,
@@ -58,7 +58,7 @@ require("oil-git").setup({
             deleted = " ",
             copied = "󰆏 ",
             conflict = "󰽜 ",
-            untracked = "",
+            untracked = " ",
             ignored = " "
         },
         directory = {
@@ -68,20 +68,30 @@ require("oil-git").setup({
             deleted = " ",
             copied = "󰆏 ",
             conflict = "󰽜 ",
-            untracked = "",
+            untracked = " ",
             ignored = " "
         },
     },
 
     -- Colors (only applied if highlight groups don't exist)
     highlights = {
-        OilGitAdded = { fg = "#a6e3a1" },
-        OilGitModified = { fg = "#f9e2af" },
-        OilGitRenamed = { fg = "#cba6f7" },
-        OilGitDeleted = { fg = "#f38ba8" },
-        OilGitCopied = { fg = "#cba6f7" },
-        OilGitConflict = { fg = "#fab387" },
-        OilGitUntracked = { fg = "#89b4fa" },
-        OilGitIgnored = { fg = "#6c7086" },
+        OilGitAdded = { fg = "#00d787" },     -- 鲜艳绿色
+        OilGitModified = { fg = "#ffd700" },  -- 金黄色
+        OilGitRenamed = { fg = "#af5fff" },   -- 鲜艳紫色
+        OilGitDeleted = { fg = "#ff5f5f" },   -- 鲜艳红色
+        OilGitCopied = { fg = "#00d7ff" },    -- 鲜艳青色
+        OilGitConflict = { fg = "#ff6600" },  -- 鲜艳橙色
+        OilGitUntracked = { fg = "#fc03ad" }, -- 鲜艳蓝色
+        OilGitIgnored = { fg = "#808080" },   -- 灰色（保持低调）
     },
 })
+
+-- Force override existing highlight groups
+vim.api.nvim_set_hl(0, "OilGitAdded", { fg = "#00d787" })
+vim.api.nvim_set_hl(0, "OilGitModified", { fg = "#ffd700" })
+vim.api.nvim_set_hl(0, "OilGitRenamed", { fg = "#af5fff" })
+vim.api.nvim_set_hl(0, "OilGitDeleted", { fg = "#ff5f5f" })
+vim.api.nvim_set_hl(0, "OilGitCopied", { fg = "#00d7ff" })
+vim.api.nvim_set_hl(0, "OilGitConflict", { fg = "#ff6600" })
+vim.api.nvim_set_hl(0, "OilGitUntracked", { fg = "#fc03ad" })
+vim.api.nvim_set_hl(0, "OilGitIgnored", { fg = "#808080" })
