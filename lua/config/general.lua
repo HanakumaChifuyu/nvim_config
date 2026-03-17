@@ -1,49 +1,58 @@
--- basic
+-- ============================================================================
+-- Basic Editor Settings
+-- ============================================================================
 vim.o.clipboard = "unnamedplus"
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.laststatus = 2
 vim.o.showcmd = true
+vim.o.wrap = false
+vim.o.fileencodings = "utf-8"
+vim.opt.updatetime = 200
+vim.opt.autoread = true
+vim.opt.iskeyword:append("-")
+
+-- ============================================================================
+-- Search Settings
+-- ============================================================================
 vim.o.hlsearch = true
 vim.o.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
+
+-- ============================================================================
+-- Indentation Settings
+-- ============================================================================
 vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.autoindent = true
 vim.o.smartindent = true
-vim.o.fileencodings = "utf-8"
-vim.o.wrap = false
 
--- init 颜色显示插件
+-- ============================================================================
+-- Folding Settings
+-- ============================================================================
+vim.o.foldmethod = 'indent'
+vim.o.foldlevel = 99
+
+-- ============================================================================
+-- Window and Buffer Settings
+-- ============================================================================
+vim.o.switchbuf = 'useopen,uselast'
+
+-- ============================================================================
+-- UI and Color Settings
+-- ============================================================================
 vim.opt.termguicolors = true
 require('nvim-highlight-colors').setup({})
-vim.o.switchbuf = 'useopen,uselast'
-vim.o.foldmethod = 'indent' -- 基于缩进折叠
-vim.o.foldlevel = 99
-vim.opt.autoread = true
 
-vim.opt.iskeyword:append("-")
-
-vim.cmd [[
-  augroup HelpInCurrentWindow
-    autocmd!
-    autocmd FileType help,man wincmd o
-  augroup END
-]]
-
-vim.cmd [[
-  augroup QuickfixInCurrentWindow
-    autocmd!
-    autocmd FileType qf wincmd o
-  augroup END
-]]
-
--- color scheme
+-- Color scheme
 vim.cmd [[colorscheme tokyonight]]
 
+-- ============================================================================
+-- Diagnostic Configuration
+-- ============================================================================
 vim.diagnostic.config({
     severity_sort = true,
     float = {
@@ -62,5 +71,33 @@ vim.diagnostic.config({
         }
     },
     underline = true
+})
 
+-- ============================================================================
+-- Autocommands
+-- ============================================================================
+
+-- Open help and man pages in current window only
+vim.cmd [[
+  augroup HelpInCurrentWindow
+    autocmd!
+    autocmd FileType help,man wincmd o
+  augroup END
+]]
+
+-- Open quickfix in current window only
+vim.cmd [[
+  augroup QuickfixInCurrentWindow
+    autocmd!
+    autocmd FileType qf wincmd o
+  augroup END
+]]
+
+-- Auto-reload files when changed outside Neovim
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+    callback = function()
+        if vim.api.nvim_get_mode().mode ~= 'c' then
+            vim.cmd('checktime')
+        end
+    end,
 })

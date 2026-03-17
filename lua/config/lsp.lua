@@ -1,34 +1,82 @@
+-- ============================================================================
+-- Mason Setup
+-- ============================================================================
 require("mason").setup()
 
-
--- Setup LSP capabilities
+-- ============================================================================
+-- LSP Capabilities Configuration
+-- ============================================================================
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 -- Enable workspace/didChangeWatchedFiles so LSP can detect external file changes
 capabilities.workspace = capabilities.workspace or {}
 capabilities.workspace.didChangeWatchedFiles = {
     dynamicRegistration = true,
 }
--- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
-    callback = function(args)
-        require("conform").format({ bufnr = args.buf })
-    end,
-})
+-- ============================================================================
+-- Diagnostic Configuration (LSP-specific)
+-- ============================================================================
+-- Note: This merges with the base diagnostic config in general.lua
 vim.diagnostic.config({
-    -- 关键：打字时实时更新报错
+    -- Enable real-time diagnostics while typing in insert mode
     update_in_insert = true,
-    -- 提高报错显示的响应速度
+    -- Improve diagnostic update responsiveness
     severity_sort = true,
 })
+
+-- ============================================================================
+-- Conform (Formatter) Setup
+-- ============================================================================
+require("conform").setup({
+    formatters_by_ft = {
+        lua = { "luaformatter" },
+        markdown = { "markdownlint" },
+        bash = { "shfmt" },
+        zsh = { "shfmt" },
+        sh = { "shfmt" },
+        java = { "google-java-format" },
+        xml = { "xmlformat" },
+        yaml = { "prettier" },
+        toml = { "taplo" },
+        conf = { "prettier" },
+        fish = { "fish_indent" },
+        python = { "ruff_format", "ruff_organize_imports", "ruff_fix" },
+        json = { "biome", "prettier", stop_after_first = true },
+        jsonc = { "biome" },
+        javascript = { "prettier", stop_after_first = true },
+        typescript = { "prettier", stop_after_first = true },
+        javascriptreact = { "prettier", stop_after_first = true },
+        typescriptreact = { "prettier", stop_after_first = true },
+        vue = { "prettier" },
+        css = { "prettier" },
+        html = { "prettier" },
+        cpp = { "clang-format" },
+        c = { "clang-format" },
+        ["_"] = { "trim_whitespace", "trim_trailing_lines" }
+    },
+    formatters = {
+        ["clang-format"] = {
+            prepend_args = { "--style={IndentWidth: 4}" },
+        },
+    },
+    format_on_save = {
+        timeout_ms = 500,
+        lsp_format = "fallback",
+    },
+})
+
+-- ============================================================================
+-- LSP Server Configurations
+-- ============================================================================
+
+-- Rust Analyzer
 vim.lsp.config('rust_analyzer', {
     cmd = { 'rust-analyzer' },
     filetypes = { 'rust' },
     root_markers = { 'Cargo.toml', '.git' },
     settings = {
         ['rust-analyzer'] = {
-
             procMacro = { enable = true },
             diagnostics = {
                 enable = true,
@@ -45,51 +93,11 @@ vim.lsp.config('rust_analyzer', {
                     enable = true,
                 },
             },
-
         },
     },
 })
 
-require("conform").setup({
-    formatters_by_ft = {
-        lua = { "luaformatter" },
-        markdown = { "markdownlint" },
-        bash = { "shfmt" },
-        zsh = { "shfmt" },
-        sh = { "shfmt" },
-        java = { "google-java-format" },
-        xml = { "xmlformat" },
-        yaml = { "prettier" },
-        toml = { "taplo" },
-        conf = { "prettier" },
-        fish = { "fish_indent" },
-        python = { "ruff_format", "ruff_organize_imports", "ruff_fix" },
-        -- rust = { "rustfmt" },
-        json = { "biome", "prettier", stop_after_first = true },
-        jsonc = { "biome" },
-        javascript = { "prettier", stop_after_first = true },
-        typescript = { "prettier", stop_after_first = true },
-        javascriptreact = { "prettier", stop_after_first = true },
-        typescriptreact = { "prettier", stop_after_first = true },
-        vue = { "prettier" },
-        css = { "prettier" },
-        html = { "prettier" },
-        cpp = { "clang-format" },
-        c = { "clang-format" },
-
-        ["_"] = { "trim_whitespace", "trim_trailing_lines" }
-    },
-    formatters = {
-        ["clang-format"] = {
-            prepend_args = { "--style={IndentWidth: 4}" },
-        },
-    },
-    format_on_save = {
-        -- These options will be passed to conform.format()
-        timeout_ms = 500,
-        lsp_format = "fallback",
-    },
-})
+-- Python (BasedPyright)
 vim.lsp.config('basedpyright', {
     capabilities = capabilities,
     settings = {
@@ -101,7 +109,9 @@ vim.lsp.config('basedpyright', {
     },
 })
 
-
+-- ============================================================================
+-- Mason LSP Config (Default Handler)
+-- ============================================================================
 require("mason-lspconfig").setup({
     handlers = {
         function(server_name)
