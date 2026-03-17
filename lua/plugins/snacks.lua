@@ -8,11 +8,23 @@ return {
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
         bigfile = { enabled = true },
-        indent = { enabled = false },
+        indent = {
+            enabled = true,
+            animate = {
+                enabled = false,
+            },
+        },
         picker = { enabled = true, ui_select = true },
         quickfile = { enabled = true },
-        scope = { enabled = true },
-        statuscolumn = { enabled = true },
+        rename = { enabled = true },
+        scope = { enabled = false },
+        statuscolumn = {
+            enabled = true,
+            folds = {
+                open = true,
+            },
+
+        },
         words = { enabled = true },
     },
 

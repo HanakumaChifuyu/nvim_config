@@ -95,3 +95,12 @@ vim.api.nvim_set_hl(0, "OilGitCopied", { fg = "#00d7ff" })
 vim.api.nvim_set_hl(0, "OilGitConflict", { fg = "#ff6600" })
 vim.api.nvim_set_hl(0, "OilGitUntracked", { fg = "#fc03ad" })
 vim.api.nvim_set_hl(0, "OilGitIgnored", { fg = "#808080" })
+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "OilActionsPost",
+    callback = function(event)
+        if event.data.actions[1].type == "move" then
+            Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
+        end
+    end,
+})
