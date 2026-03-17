@@ -6,6 +6,7 @@ return {
             dependencies = { 'nvim-lua/plenary.nvim' }
         }
     },
+
     version = '1.*',
     opts = {
         keymap = {
@@ -16,7 +17,8 @@ return {
             -- ['<S-Tab>'] = {
             --     "select_prev", "fallback" },
             ['<CR>'] = { 'accept', "fallback" },
-        }
+        },
+        snippets = { preset = 'luasnip' },
 
     },
     appearance = {
