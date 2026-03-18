@@ -78,6 +78,8 @@ Pre-configured LSP and formatting for:
 ```
 ~/.config/nvim/
 ├── init.lua                 # Entry point
+├── install.sh              # Automated installation script
+├── uninstall.sh            # Automated uninstallation script
 ├── lua/
 │   ├── config/              # Core configuration (auto-loaded)
 │   │   ├── init.lua        # Configuration loader
@@ -102,16 +104,49 @@ Pre-configured LSP and formatting for:
 
 ## Installation
 
-### Prerequisites
+### Quick Install (Recommended)
+
+Use the automated installation script:
+
+```bash
+# Clone the repository
+git clone <your-repo-url> /tmp/nvim-config
+cd /tmp/nvim-config
+
+# Run the installer
+./install.sh
+```
+
+The script will:
+- ✅ Check system requirements (Neovim >= 0.10.0, Git)
+- ✅ Backup existing configuration automatically
+- ✅ Install the configuration
+- ✅ Check and optionally install dependencies (ripgrep, fd, Node.js, etc.)
+- ✅ Optionally install a Nerd Font
+- ✅ Bootstrap lazy.nvim and install all plugins
+
+**Installation Options:**
+```bash
+./install.sh              # Interactive installation (recommended)
+./install.sh --auto       # Automatic installation (skip all prompts)
+./install.sh --skip-backup # Skip backing up existing config
+./install.sh --help       # Show help message
+```
+
+### Manual Installation
+
+If you prefer to install manually:
+
+#### Prerequisites
 
 - Neovim >= 0.10.0
 - Git
 - A [Nerd Font](https://www.nerdfonts.com/) (for icons)
-- [ripgrep](https://github.com/BurntSushi/ripgrep) (for telescope/snacks grep)
+- [ripgrep](https://github.com/BurntSushi/ripgrep) (for fuzzy finding)
 - [fd](https://github.com/sharkdp/fd) (optional, for faster file finding)
 - Node.js (for some LSP servers)
 
-### Install
+#### Steps
 
 1. Backup your existing configuration:
 ```bash
@@ -129,6 +164,55 @@ nvim
 ```
 
 Lazy.nvim will automatically install all plugins on first launch.
+
+4. Install LSP servers:
+```vim
+:Mason
+```
+
+### Verify Installation
+
+Check that everything is working:
+```vim
+:checkhealth
+```
+
+This will show any missing dependencies or configuration issues.
+
+## Uninstallation
+
+### Quick Uninstall
+
+Use the automated uninstallation script:
+
+```bash
+cd ~/.config/nvim
+
+# Remove configuration only (keeps plugin data and cache)
+./uninstall.sh
+
+# Complete removal (removes everything)
+./uninstall.sh --full
+```
+
+The script will:
+- Show what will be removed with file sizes
+- Offer to create a backup before removal
+- Clean up configuration and optionally data/cache/state
+
+### Manual Uninstallation
+
+Remove configuration files:
+```bash
+rm -rf ~/.config/nvim
+```
+
+Remove all Neovim data (optional):
+```bash
+rm -rf ~/.local/share/nvim  # Plugin data, Mason installations
+rm -rf ~/.local/state/nvim  # State files
+rm -rf ~/.cache/nvim        # Cache files
+```
 
 ## Configuration Guide
 
