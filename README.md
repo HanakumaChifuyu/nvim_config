@@ -85,7 +85,7 @@ Pre-configured LSP and formatting for:
 │   │   ├── general.lua     # Editor settings
 │   │   ├── keybinding.lua  # Key mappings
 │   │   ├── lsp.lua         # LSP configuration
-│   │   ├── auto-save.lua   # Auto-save settings
+│   │   ├── autocmds.lua    # Autocommands configuration
 │   │   └── ...             # Other configs
 │   ├── plugins/             # Plugin specifications (auto-loaded by lazy.nvim)
 │   │   ├── Lsp.lua         # LSP plugins
@@ -94,8 +94,10 @@ Pre-configured LSP and formatting for:
 │   │   ├── nvim-treesitter.lua
 │   │   └── ...             # Other plugin configs
 │   └── utils/               # Utility functions
-└── snippets/                # Custom snippets
-    └── markdown.json
+├── snippets/                # Custom snippets
+│   └── markdown.json
+└── docs/                    # Additional documentation
+    └── AUTOCOMMANDS.md     # Detailed autocommands guide
 ```
 
 ## Installation
@@ -274,6 +276,8 @@ Leader key: `<Space>`
 - Auto-reload: Files changed outside Neovim
 
 ## Autocommands (lua/config/autocmds.lua)
+
+> **📖 For detailed technical documentation, see [docs/AUTOCOMMANDS.md](docs/AUTOCOMMANDS.md)**
 
 The configuration includes intelligent autocommands organized by category for better maintainability. All autocommands use `vim.api.nvim_create_autocmd` for consistency and type safety.
 
