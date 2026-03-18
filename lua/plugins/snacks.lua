@@ -9,12 +9,12 @@ return {
         -- refer to the configuration section below
         bigfile = { enabled = true },
         indent = {
-            enabled = true,
+            enabled = false,
             animate = {
                 enabled = false,
             },
         },
-        scroll={enabled=true},
+        scroll = { enabled = true },
         picker = { enabled = true, ui_select = true },
         quickfile = { enabled = true },
         rename = { enabled = true },
