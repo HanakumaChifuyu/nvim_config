@@ -17,11 +17,12 @@ require("oil").setup({
                 end
 
                 local full_path = dir .. entry.name
-                local relative_path = ' @' .. vim.fn.fnamemodify(full_path, ":.")
+                local relative_path = vim.fn.fnamemodify(full_path, ":.")
 
                 if entry.type == "directory" then
-                    relative_path = relative_path .. "/ "
+                    relative_path = relative_path .. "/"
                 end
+
                 vim.fn.setreg("+", relative_path)
             end,
         },
@@ -48,7 +49,7 @@ require("oil-git").setup({
     symbol_position = "eol",          -- "eol", "signcolumn", or "none"
     can_use_signcolumn = nil,         -- Optional callback(bufnr): nil|bool|string
     ignore_gitsigns_update = false,   -- Ignore GitSignsUpdate events (fallback for flickering)
-    debug = "verbose",                -- false, "minimal", or "verbose"
+    debug = false,                    -- false, "minimal", or "verbose"
 
     symbols = {
         file = {
@@ -75,14 +76,14 @@ require("oil-git").setup({
 
     -- Colors (only applied if highlight groups don't exist)
     highlights = {
-        OilGitAdded = { fg = "#00d787" },     -- 鲜艳绿色
-        OilGitModified = { fg = "#ffd700" },  -- 金黄色
-        OilGitRenamed = { fg = "#af5fff" },   -- 鲜艳紫色
-        OilGitDeleted = { fg = "#ff5f5f" },   -- 鲜艳红色
-        OilGitCopied = { fg = "#00d7ff" },    -- 鲜艳青色
-        OilGitConflict = { fg = "#ff6600" },  -- 鲜艳橙色
-        OilGitUntracked = { fg = "#fc03ad" }, -- 鲜艳蓝色
-        OilGitIgnored = { fg = "#808080" },   -- 灰色（保持低调）
+        OilGitAdded = { fg = "#00d787" },     -- Bright green
+        OilGitModified = { fg = "#ffd700" },  -- Golden yellow
+        OilGitRenamed = { fg = "#af5fff" },   -- Bright purple
+        OilGitDeleted = { fg = "#ff5f5f" },   -- Bright red
+        OilGitCopied = { fg = "#00d7ff" },    -- Bright cyan
+        OilGitConflict = { fg = "#ff6600" },  -- Bright orange
+        OilGitUntracked = { fg = "#fc03ad" }, -- Bright pink
+        OilGitIgnored = { fg = "#808080" },   -- Gray (subtle)
     },
 })
 
