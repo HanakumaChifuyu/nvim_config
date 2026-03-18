@@ -61,32 +61,7 @@ vim.keymap.set('n', '<C-Left>', '<C-W>>', { desc = 'Decrease window width' })
 -- ============================================================================
 -- LSP & Diagnostics
 -- ============================================================================
-
-vim.api.nvim_create_autocmd('LspAttach', {
-    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-    callback = function(lsp_env)
-        local opts = { buffer = lsp_env.buf }
-
-        -- Configure inlay hint highlight
-        vim.api.nvim_set_hl(0, 'LspInlayHint', {
-            fg = '#565f89',
-            bg = '#292e42',
-            italic = true,
-            bold = false,
-            blend = 30,
-        })
-
-        -- Hover documentation
-        vim.keymap.set('n', 'K', function()
-            vim.lsp.buf.hover({ border = 'rounded' })
-        end, opts)
-
-        -- Show diagnostics
-        vim.keymap.set('n', 'ge', function()
-            vim.diagnostic.open_float({ border = 'rounded' })
-        end, opts)
-    end,
-})
+-- Note: LspAttach autocmd moved to lua/config/autocmds.lua
 
 -- LSP navigation (using Snacks picker)
 vim.keymap.set('n', 'gd', function()
@@ -109,19 +84,7 @@ vim.keymap.set('n', 'ga', ':Lspsaga code_action<CR>', { desc = 'Lsp Actions' })
 -- ============================================================================
 -- Terminal Management
 -- ============================================================================
-
-function _G.set_terminal_keymaps()
-    local opts = { buffer = 0 }
-    vim.o.timeoutlen = 300
-
-    -- Exit terminal mode
-    vim.keymap.set('t', 'jj', [[<C-\><C-n>]], opts)
-
-    -- Window command prefix (useful for window navigation from terminal)
-    vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
-end
-
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+-- Note: TermOpen autocmd moved to lua/config/autocmds.lua
 
 -- Terminal utilities
 local Terminal = require('toggleterm.terminal').Terminal

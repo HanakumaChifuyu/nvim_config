@@ -37,26 +37,3 @@ require("image").setup({
     tmux_show_only_in_active_window = false,                                            -- auto show/hide images in the correct Tmux window (needs visual-activity off)
     hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
 })
-
--- require("diagram").setup({
---     integrations = {
---         require("diagram.integrations.markdown"),
---         require("diagram.integrations.neorg"),
---     },
---     renderer_options = {
---         mermaid = {
---             theme = "neutral",
---         },
---         plantuml = {
---             charset = "utf-8",
---         },
---         d2 = {
---             theme_id = 300,
---             cli_args = { "--pad", "0" }, -- nil | { "--pad", "0" } | ...
---         },
---         gnuplot = {
---             theme = "dark",
---             size = "800,600",
---         },
---     },
--- })

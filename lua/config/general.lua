@@ -73,31 +73,4 @@ vim.diagnostic.config({
     underline = true
 })
 
--- ============================================================================
--- Autocommands
--- ============================================================================
-
--- Open help and man pages in current window only
-vim.cmd [[
-  augroup HelpInCurrentWindow
-    autocmd!
-    autocmd FileType help,man wincmd o
-  augroup END
-]]
-
--- Open quickfix in current window only
-vim.cmd [[
-  augroup QuickfixInCurrentWindow
-    autocmd!
-    autocmd FileType qf wincmd o
-  augroup END
-]]
-
--- Auto-reload files when changed outside Neovim
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
-    callback = function()
-        if vim.api.nvim_get_mode().mode ~= 'c' then
-            vim.cmd('checktime')
-        end
-    end,
-})
+-- Note: Autocommands moved to lua/config/autocmds.lua for centralized management
