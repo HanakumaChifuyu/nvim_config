@@ -17,13 +17,14 @@ require("oil").setup({
                 end
 
                 local full_path = dir .. entry.name
-                local relative_path = vim.fn.fnamemodify(full_path, ":.")
+                local relative_path = " @" .. vim.fn.fnamemodify(full_path, ":.")
 
                 if entry.type == "directory" then
-                    relative_path = relative_path .. "/"
+                    relative_path = relative_path .. "/ "
+                    vim.fn.setreg("+", relative_path)
+                else
+                    vim.fn.setreg("+", relative_path .. " ")
                 end
-
-                vim.fn.setreg("+", relative_path)
             end,
         },
     },
