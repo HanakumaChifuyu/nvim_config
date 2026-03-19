@@ -28,7 +28,7 @@ vim.keymap.set('n', 'o', 'o[<BS>', { noremap = true })
 vim.keymap.set('n', 'O', 'O[<BS>', { noremap = true })
 
 -- Paste without overwriting register in visual mode
-vim.keymap.set('x', 'p', [[\"_dP]])
+vim.keymap.set('x', 'p', '"_dP', { noremap = true })
 
 -- Copy relative path to system clipboard
 vim.keymap.set('n', 'C', function()
