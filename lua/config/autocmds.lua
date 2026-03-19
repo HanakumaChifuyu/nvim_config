@@ -66,7 +66,8 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
     group = auto_reload_group,
     desc = "Auto-reload files when changed outside Neovim",
     callback = function()
-        if vim.api.nvim_get_mode().mode ~= 'c' then
+        -- Skip in command-line mode or command-line window (q:)
+        if vim.api.nvim_get_mode().mode ~= 'c' and vim.fn.getcmdwintype() == '' then
             vim.cmd('checktime')
         end
     end,
