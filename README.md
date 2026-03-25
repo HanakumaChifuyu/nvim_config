@@ -46,7 +46,6 @@ A modern, feature-rich Neovim configuration with comprehensive LSP support, fuzz
 ### Specialized Tools
 
 - **Markdown Support**:
-  - [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim) - Markdown rendering
   - [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) - Obsidian integration
   - [img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim) - Image clipboard support
   - [image.nvim](https://github.com/3rd/image.nvim) - Image preview in terminal
