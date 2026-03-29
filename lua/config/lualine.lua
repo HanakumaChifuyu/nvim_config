@@ -1,4 +1,6 @@
 require('lualine').setup({
-options = { theme = 'dracula' }
+    options = {
+        theme = require('matugen').lualine_theme(),
+    },
 })
 
