@@ -20,7 +20,7 @@ vim.o.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- ============================================================================
+-- =============== require('matugen').setup()=============================================================
 -- Indentation Settings
 -- ============================================================================
 vim.o.expandtab = true
@@ -40,15 +40,6 @@ vim.o.foldlevel = 99
 -- Window and Buffer Settings
 -- ============================================================================
 vim.o.switchbuf = 'useopen,uselast'
-
--- ============================================================================
--- UI and Color Settings
--- ============================================================================
-vim.opt.termguicolors = true
-require('nvim-highlight-colors').setup({})
-
--- Color scheme
-vim.cmd [[colorscheme tokyonight]]
 
 -- ============================================================================
 -- Diagnostic Configuration
@@ -74,3 +65,6 @@ vim.diagnostic.config({
 })
 
 -- Note: Autocommands moved to lua/config/autocmds.lua for centralized management
+
+
+require('matugen').setup()
