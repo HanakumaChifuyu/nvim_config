@@ -17,6 +17,8 @@ return {
             -- ['<S-Tab>'] = {
             --     "select_prev", "fallback" },
             ['<CR>'] = { 'accept', "fallback" },
+            ['<C-j>'] = { 'select_next', 'fallback' },
+            ['<C-k>'] = { 'select_prev', 'fallback' },
         },
         snippets = { preset = 'luasnip' },
 
