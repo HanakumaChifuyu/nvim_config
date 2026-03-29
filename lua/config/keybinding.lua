@@ -37,20 +37,8 @@ vim.keymap.set('n', 'C', function()
 end, { desc = 'Copy relative path' })
 
 -- ============================================================================
--- Window Navigation & Management (keyd remapping compatible)
+-- Window Navigation & Management
 -- ============================================================================
-
--- Remap physical arrow keys to window navigation (for keyd compatibility)
-vim.keymap.set({ 'n', 'v', 'o' }, '<Left>', '<C-h>', { remap = true })
-vim.keymap.set({ 'n', 'v', 'o' }, '<Down>', '<C-j>', { remap = true })
-vim.keymap.set({ 'n', 'v', 'o' }, '<Up>', '<C-k>', { remap = true })
-vim.keymap.set({ 'n', 'v', 'o' }, '<Right>', '<C-l>', { remap = true })
-
--- Window navigation
-vim.keymap.set('n', '<C-h>', [[<Cmd>wincmd h<CR>]], { noremap = true, silent = true })
-vim.keymap.set('n', '<C-j>', [[<Cmd>wincmd j<CR>]], { noremap = true, silent = true })
-vim.keymap.set('n', '<C-k>', [[<Cmd>wincmd k<CR>]], { noremap = true, silent = true })
-vim.keymap.set('n', '<C-l>', [[<Cmd>wincmd l<CR>]], { noremap = true, silent = true })
 
 -- Window resizing
 vim.keymap.set('n', '<C-Up>', '<C-W>+', { desc = 'Increase window height' })
@@ -238,15 +226,3 @@ end, { desc = 'Icons' })
 vim.keymap.set('n', '<leader>sm', function()
     Snacks.picker.marks()
 end, { desc = 'Marks' })
-
--- ============================================================================
--- Words Navigation (Navigate between word references)
--- ============================================================================
-
-vim.keymap.set({ 'n', 't' }, ']]', function()
-    Snacks.words.jump(vim.v.count1)
-end, { desc = 'Next Reference' })
-
-vim.keymap.set({ 'n', 't' }, '[[', function()
-    Snacks.words.jump(-vim.v.count1)
-end, { desc = 'Prev Reference' })
