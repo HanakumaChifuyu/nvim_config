@@ -3,24 +3,24 @@ local M = {}
 function M.setup()
     require('base16-colorscheme').setup {
         -- Background tones
-        base00 = '#181d25',             -- Default Background
-        base01 = '#28303e',   -- Lighter Background (status bars)
-        base02 = '#242b37', -- Selection Background
-        base03 = '#616875',             -- Comments, Invisibles
+        base00 = '#131313',             -- Default Background
+        base01 = '#1f1f1f',   -- Lighter Background (status bars)
+        base02 = '#2a2a2a', -- Selection Background
+        base03 = '#919191',             -- Comments, Invisibles
         -- Foreground tones
-        base04 = '#afb1b6',  -- Dark Foreground (status bars)
-        base05 = '#f2f2f3',          -- Default Foreground
-        base06 = '#f2f2f3',          -- Light Foreground
-        base07 = '#f2f2f3',       -- Lightest Foreground
+        base04 = '#c6c6c6',  -- Dark Foreground (status bars)
+        base05 = '#e2e2e2',          -- Default Foreground
+        base06 = '#e2e2e2',          -- Light Foreground
+        base07 = '#e2e2e2',       -- Lightest Foreground
         -- Accent colors
-        base08 = '#fd4663',               -- Variables, XML Tags, Errors
-        base09 = '#cc6682',            -- Integers, Constants
-        base0A = '#6d5cd6',           -- Classes, Search Background
-        base0B = '#6794e4',             -- Strings, Diff Inserted
-        base0C = '#e996ad',  -- Regex, Escape Chars
-        base0D = '#93b3ec',   -- Functions, Methods
-        base0E = '#a196e9', -- Keywords, Storage
-        base0F = '#900017',     -- Deprecated, Embedded Tags
+        base08 = '#ffb4ab',               -- Variables, XML Tags, Errors
+        base09 = '#f1b7c5',            -- Integers, Constants
+        base0A = '#cdc2db',           -- Classes, Search Background
+        base0B = '#d3bbff',             -- Strings, Diff Inserted
+        base0C = '#f1b7c5',  -- Regex, Escape Chars
+        base0D = '#d3bbff',   -- Functions, Methods
+        base0E = '#cdc2db', -- Keywords, Storage
+        base0F = '#93000a',     -- Deprecated, Embedded Tags
     }
 end
 
