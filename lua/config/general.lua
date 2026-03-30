@@ -1,6 +1,7 @@
 -- ============================================================================
 -- Basic Editor Settings
 -- ============================================================================
+-- Clipboard uses wl-copy/wl-paste (X11 tools like xclip won't work as root)
 vim.o.clipboard = "unnamedplus"
 vim.o.number = true
 vim.o.relativenumber = true
@@ -11,6 +12,7 @@ vim.o.fileencodings = "utf-8"
 vim.opt.updatetime = 200
 vim.opt.autoread = true
 vim.opt.iskeyword:append("-")
+vim.opt.iskeyword:append("_")
 
 -- ============================================================================
 -- Search Settings

@@ -30,7 +30,7 @@ vim.diagnostic.config({
 -- ============================================================================
 require("conform").setup({
     formatters_by_ft = {
-        lua = { "luaformatter" },
+        lua = { "stylua" },
         markdown = { "markdownlint" },
         bash = { "shfmt" },
         zsh = { "shfmt" },
@@ -53,7 +53,7 @@ require("conform").setup({
         html = { "prettier" },
         cpp = { "clang-format" },
         c = { "clang-format" },
-        ["_"] = { "trim_whitespace", "trim_trailing_lines" }
+        ["_"] = { "trim_whitespace", "trim_newlines", "squeeze_blanks" }
     },
     formatters = {
         ["clang-format"] = {
