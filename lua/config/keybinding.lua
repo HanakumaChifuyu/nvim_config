@@ -11,7 +11,11 @@ vim.keymap.set({ "n", "v" }, "k", "gk", { noremap = true, silent = true })
 
 -- Quick save and quit
 vim.keymap.set("n", "<leader>w", ":wa<CR>", { noremap = true, desc = "Save all buffers" })
-vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, desc = "Quit" })
+vim.keymap.set("n", "<leader>q", function()
+	if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+		vim.cmd("q")
+	end
+end, { noremap = true, desc = "Quit (ignore if last window)" })
 
 -- Quick escape from insert mode
 vim.keymap.set("i", "jj", "<Esc>", { noremap = true, silent = true })
